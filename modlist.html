@@ -52,17 +52,21 @@
                         let mods = JSON.parse(event.target.result);
 
                         mods.sort((left, right) => {
-                            if (left.TargetFolder < right.TargetFolder)
+                            const leftFolder = left.TargetFolder.toLowerCase();
+                            const rightFolder = right.TargetFolder.toLowerCase();
+                            if (leftFolder < rightFolder)
                                 return -1;
 
-                            if (left.TargetFolder > right.TargetFolder)
+                            if (leftFolder > rightFolder)
                                 return 1;
 
                             // Equal target folders, sort by name.
-                            if (left.Title < right.Title)
+                            let leftTitle = left.Title.toLowerCase();
+                            let rightTitle = right.Title.toLowerCase();
+                            if (leftTitle < rightTitle)
                                 return -1;
 
-                            if (left.Title > right.Title)
+                            if (leftTitle > rightTitle)
                                 return 1;
                             return 0;
                         });
